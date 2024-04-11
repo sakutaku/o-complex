@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IProduct, IReview } from '../type';
 
 interface Props {
@@ -6,6 +6,38 @@ interface Props {
   }
 
 const ProductCard:React.FC<Props> = ({ product }) => {
+    const [showQuantitySelector, setShowQuantitySelector] = useState(false);
+    const [quantity, setQuantity] = useState(1);
+
+    const handleBuyClick = () => {
+        setShowQuantitySelector(true);
+    };
+
+    const handleDecrease = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        } 
+        if (quantity === 1) {
+            setShowQuantitySelector(false);
+        }
+    };
+
+    const handleIncrease = () => {
+        setQuantity(quantity + 1);
+    };
+
+    const handleAddToCart = () => {
+        // Handle adding product to cart with quantity
+        console.log(`Added ${quantity} ${product.title}(s) to cart.`);
+    };
+
+    const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newQuantity = parseInt(event.target.value, 10);
+        if (!isNaN(newQuantity) && newQuantity > 0) {
+            setQuantity(newQuantity);
+        }
+    };
+
   return (
     <div className="product-card">
       <img src={product.image_url} alt={product.title}/>  
@@ -14,8 +46,21 @@ const ProductCard:React.FC<Props> = ({ product }) => {
         <p>{product.description}</p>
       </div>
       <div className='product-card-footer'>
-        <div>цена: {product.price}</div>
-        <div>купить</div>
+        <div className='product-price'>цена: {product.price}₽</div>
+        {showQuantitySelector ? (
+                    <div className='product-add-wrap'>
+                        <button onClick={handleDecrease} className='product-add-decrease'>-</button>
+                        <input
+                            type="text"
+                            value={quantity}
+                            onChange={handleQuantityChange}
+                        />
+                        <button onClick={handleIncrease} className='product-add-increase'>+</button>
+                        {/* <button onClick={handleAddToCart}>Д</button> */}
+                    </div>
+                ) : (
+                    <div className='product-btn' onClick={handleBuyClick}>купить</div>
+                )}
       </div>
     </div>
   );
