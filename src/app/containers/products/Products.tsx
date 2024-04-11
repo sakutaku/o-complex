@@ -1,21 +1,20 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { IReview } from '../../type';
-import ReviewCard from '@/app/components/ReviewCard';
+import { IProduct, IReview } from '../../type';
+import ProductCard from '@/app/components/ProductCard';
 
-function Reviews() {
-  const [reviews, setReviews] = useState<IReview[]>([]);
+function Products() {
+  const [products, setProducts] = useState<IProduct[]>([]);
     
   useEffect(() => {
-    const fetchReviews = () => {
+    const fetchProducts = () => {
       const xhr = new XMLHttpRequest();
-      xhr.open('GET', 'http://o-complex.com:1337/reviews');
+      xhr.open('GET', 'http://o-complex.com:1337/products?page=1&page_size=20');
       xhr.onreadystatechange = () => {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
             const data = JSON.parse(xhr.responseText);
-            console.log(data);
-            setReviews(data);
+            setProducts(data.products);
           } else {
             console.error('Error fetching reviews:', xhr.statusText);
           }
@@ -24,18 +23,18 @@ function Reviews() {
       xhr.send();
     };
 
-    fetchReviews();
+    fetchProducts();
   }, []);
 
   return (
     <div>
-      <div className="reviews-card-container">
-        {reviews && reviews.map((review, index) => (
-          <ReviewCard key={index} review={review} index={index}/>
+      <div className="products-card-container">
+        {products && products.map((product, index) => (
+          <ProductCard key={index} product={product} />
         ))}
       </div>
     </div>
   );
 }
 
-export default Reviews;
+export default Products;
