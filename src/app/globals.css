@@ -245,3 +245,39 @@ body {
       transform: rotate(360deg);
   }
 }
+
+@media only screen and (max-width: 950px) {
+  .main-title {
+    font-size: 66px;
+    margin-bottom: 40px;
+  }
+  .review-card {
+    width: 45%;
+  }
+  .cart {
+    width: 650px;
+  }
+  .products-card-container {
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .main-title {
+    font-size: 40px;
+    margin-bottom: 40px;
+  }
+  .review-card {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .cart {
+    width: 95%;
+  }
+  .cart-order {
+    flex-direction: column;
+  }
+  .cart-order-phone-wrap {
+    width: 340px;
+  }
+}

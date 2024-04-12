@@ -18,8 +18,40 @@ const Cart: React.FC<CartProps> = ({cartItems}) => {
     };
 
     const handleOrderClick = () => {
-        // Logic for placing the order with phone number and cart items
-        console.log('Order placed:', { phoneNumber, cartItems });
+        if(cartItems.length === 0) {
+            alert('Выберите товар!');
+            return;
+        }
+        if (phoneNumber === '') {
+            alert('Введите номер телефона!');
+            return;
+        }
+
+        const processedPhoneNumber = phoneNumber.replace(/\D/g, ''); // Remove non-numeric characters
+
+        const requestBody = JSON.stringify({
+            phone: processedPhoneNumber,
+            cart: cartItems.map(item => ({ id: item.product.id, quantity: item.quantity }))
+        });
+    
+        const xhr = new XMLHttpRequest();
+    
+        xhr.open('POST', 'http://o-complex.com:1337/order');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    alert('Заказ оформлен!');
+                } else {
+                    alert('Заказ отменен!');
+                    console.error('Error placing order:', xhr.statusText);
+                }
+            }
+        };
+    
+        // Send the request with the request body
+        xhr.send(requestBody);
     };
 
     return (
