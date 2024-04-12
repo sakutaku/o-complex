@@ -48,7 +48,7 @@ body {
 }
 .products-card-container {
   padding: 0 190px;
-  margin-top: 80px;
+  margin-top: 40px;
   display: flex;
   justify-content: space-around;
   gap: 20px;
@@ -131,4 +131,117 @@ body {
   font-size: 36px;
   color: #F0F0F0;
   border: none;
+}
+.products-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+}
+.cart {
+  background-color: #D9D9D9;
+  width: 708px;
+  border-radius: 15px;
+  padding: 10px;
+}
+.cart h3 {
+  font-size: 36px;
+  font-weight: 400;
+  color: #000;
+}
+.cart-no-items {
+  font-size: 26px;
+  font-weight: 400;
+  color: #000;
+  margin-bottom: 20px;
+}
+.cart-order {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.cart-order-phone-wrap {
+  width: 401px;
+  height: 68px;
+}
+.cart-order-phone {
+  width: 95%;
+  height: 96%;
+  background-color: #222;
+  border-radius: 15px;
+  font-size: 34px;
+  color: #F0F0F0;
+  padding-left: 5px;
+  padding-right: 5px;
+  border: none;
+}
+.cart-order-phone:focus {
+  outline: none;
+}
+.cart-order-btn {
+  width: 268px;
+  height: 68px;
+  background-color: #222;
+  border-radius: 15px;
+  font-size: 36px;
+  color: #F0F0F0;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+.cart-total {
+  margin-top: 40px;
+  font-weight: bolder;
+  font-size: 30px;
+  color: #222;
+}
+.cart ul {
+  padding: 0;
+}
+.cart li {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.cart span {
+  display: block;
+}
+.cart-item-price {
+  margin-left: auto;
+}
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border: 8px solid #fff;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #fff transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+      transform: rotate(0deg);
+  }
+  100% {
+      transform: rotate(360deg);
+  }
 }

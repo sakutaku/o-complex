@@ -1,34 +1,38 @@
-import React, { useState } from 'react';
-import { IProduct, IReview } from '../type';
+import React, { useState, useContext,  createContext } from 'react';
+import { IProduct } from '../type';
 
 interface Props {
     product: IProduct;
+    addToCart: (product: IProduct, quantity: number) => void;
+    removeFromCart: (productId: string) => void;
   }
 
-const ProductCard:React.FC<Props> = ({ product }) => {
+const ProductCard:React.FC<Props> = ({ product, addToCart, removeFromCart }) => {
     const [showQuantitySelector, setShowQuantitySelector] = useState(false);
-    const [quantity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(0);
 
     const handleBuyClick = () => {
         setShowQuantitySelector(true);
+        setQuantity(quantity + 1);
+        addToCart(product, 1);
     };
 
     const handleDecrease = () => {
         if (quantity > 1) {
             setQuantity(quantity - 1);
+            addToCart(product, quantity - 1);
         } 
         if (quantity === 1) {
+            setQuantity(quantity - 1);
+            addToCart(product, quantity - 1);
+            removeFromCart(product.id);
             setShowQuantitySelector(false);
         }
     };
 
     const handleIncrease = () => {
         setQuantity(quantity + 1);
-    };
-
-    const handleAddToCart = () => {
-        // Handle adding product to cart with quantity
-        console.log(`Added ${quantity} ${product.title}(s) to cart.`);
+        addToCart(product, quantity + 1);
     };
 
     const handleQuantityChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +60,6 @@ const ProductCard:React.FC<Props> = ({ product }) => {
                             onChange={handleQuantityChange}
                         />
                         <button onClick={handleIncrease} className='product-add-increase'>+</button>
-                        {/* <button onClick={handleAddToCart}>Д</button> */}
                     </div>
                 ) : (
                     <div className='product-btn' onClick={handleBuyClick}>купить</div>
