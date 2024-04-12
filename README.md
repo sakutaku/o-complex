@@ -1,3 +1,5 @@
+# Тестовое задание **React Developer (Next.js)**
+
 Для запуска проекта вам необходимо склонировать проект и ввести в терминале:
 
 ```bash
@@ -12,8 +14,7 @@ bun dev
 
 Откройте [http://localhost:3000](http://localhost:3000) в браузере.
 
-# Тестовое задание **React Developer (Next.js)**
-
+Что было сделано:
 - визуал по фигме [https://www.figma.com/file/XIYVl8ICFkdl3HJZcc8o8B/тестовое?type=design&node-id=0%3A1&mode=design&t=6xUI2e3VtlUzDocD-1](https://www.figma.com/file/XIYVl8ICFkdl3HJZcc8o8B/%D1%82%D0%B5%D1%81%D1%82%D0%BE%D0%B2%D0%BE%D0%B5?type=design&node-id=0%3A1&mode=design&t=6xUI2e3VtlUzDocD-1)
 - должен быть адаптирован под мобильные устройства и планшеты
 - наполнение контентом отзывов из html обернутого в json
